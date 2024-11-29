@@ -300,6 +300,11 @@ class WebSockifyRequestHandler(WebSocketRequestHandlerMixIn, SimpleHTTPRequestHa
         if self.verbose:
             super().log_request(code, size)
 
+    def end_headers(self):
+        self.send_header('Access-Control-Allow-Origin', 'http://localhost:8000')
+        self.send_header('Access-Control-Allow-Credentials', 'true')
+        super().end_headers()
+
 
 class WebSockifyServer():
     """
