@@ -293,6 +293,9 @@ class WebSocket:
             if self.protocol:
                 self.send_header("Sec-WebSocket-Protocol", self.protocol)
 
+            self.send_header('Access-Control-Allow-Origin', 'http://localhost:8000')
+            self.send_header('Access-Control-Allow-Credentials', 'true')
+
             self.end_headers()
 
             self._state = "flush"
